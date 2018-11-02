@@ -7,12 +7,14 @@ import lombok.Setter;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
 import java.util.List;
 
 @Getter
 @Setter
 @ManagedBean
+@ViewScoped
 public class IndexBacking {
 
     private List<Seance> seances;

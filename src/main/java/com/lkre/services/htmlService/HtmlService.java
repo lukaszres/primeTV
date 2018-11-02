@@ -1,6 +1,7 @@
 package com.lkre.services.htmlService;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
@@ -13,6 +14,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @ManagedBean
+@ViewScoped
 public class HtmlService {
 
     private final DateFormat DATE_FORMAT = new SimpleDateFormat("HH:mm");
