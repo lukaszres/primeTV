@@ -25,7 +25,6 @@ public class Main {
             } else {
                 root = new File(runningJarPath.substring(0, lastIndexOf));
             }
-            System.out.println("application resolved root folder: " + root.getAbsolutePath());
             return root;
         } catch (URISyntaxException ex) {
             throw new RuntimeException(ex);
@@ -35,6 +34,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
         File root = getRootFolder();
+        System.out.println("application resolved root folder: " + root.getAbsolutePath());
         System.setProperty("org.apache.catalina.startup.EXIT_ON_INIT_FAILURE", "true");
         Tomcat tomcat = new Tomcat();
         Path tempPath = Files.createTempDirectory("tomcat-base-dir");
