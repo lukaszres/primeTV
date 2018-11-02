@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
+<html xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui">
 <!--@elvariable id="seance" type="com.lkre.services.htmlService.Seance"-->
 <h:head>
@@ -32,25 +31,31 @@
             </h:panelGrid>
         </p:dialog>
 
-        <p:commandButton value="Download seances"
-                         update="seancesTable" actionListener="#{indexBacking.downloadSeances}"/>
-        <p:dataTable id="seancesTable" var="seance" value="#{indexBacking.getSeances()}">
-            <p:column headerText="Time">
-                <h:outputText value="#{seance.time}"/>
-            </p:column>
-            <p:column headerText="Channel">
-                <h:outputText value="#{seance.channel}"/>
-            </p:column>
-            <p:column headerText="Title">
-                <h:outputText value="#{seance.title}"/>
-            </p:column>
-            <!--<p:column headerText="Episode">-->
-            <!--<h:outputText value="#{seance.episode}"/>-->
-            <!--</p:column>-->
-            <p:column headerText="Genre">
-                <h:outputText value="#{seance.genre}"/>
-            </p:column>
-        </p:dataTable>
+        <p:panel header="PrimeTv: schedule TV.">
+            <h:panelGrid columns="1">
+                <p:inputTextarea id="textArea" rows="10" cols="50" value="#{indexBacking.seancesString}"/>
+
+                <p:commandButton value="Download seances"
+                                 update="seancesTable textArea" actionListener="#{indexBacking.downloadSeances}"/>
+                <p:dataTable id="seancesTable" var="seance" value="#{indexBacking.getSeances()}">
+                    <p:column headerText="Time">
+                        <h:outputText value="#{seance.time}"/>
+                    </p:column>
+                    <p:column headerText="Channel">
+                        <h:outputText value="#{seance.channel}"/>
+                    </p:column>
+                    <p:column headerText="Title">
+                        <h:outputText value="#{seance.title}"/>
+                    </p:column>
+                    <!--<p:column headerText="Episode">-->
+                    <!--<h:outputText value="#{seance.episode}"/>-->
+                    <!--</p:column>-->
+                    <p:column headerText="Genre">
+                        <h:outputText value="#{seance.genre}"/>
+                    </p:column>
+                </p:dataTable>
+            </h:panelGrid>
+        </p:panel>
 
 
     </h:form>
