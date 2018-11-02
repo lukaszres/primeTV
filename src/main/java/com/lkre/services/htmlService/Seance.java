@@ -27,7 +27,8 @@ public class Seance {
     @Override
     public String toString() {
         DateFormat df = new SimpleDateFormat("HH:mm");
-        return df.format(time) + " :: " + genre + " :: " + title;
+        episode = episode == null ? "" : " :: " + episode;
+        return df.format(time) + " :: " + channel + " :: " + genre + " :: " + title + episode;
     }
 }
 
