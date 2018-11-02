@@ -16,8 +16,6 @@ public class IndexBacking {
 
     private List<Seance> seances;
     private String seancesString;
-    private String firstName = "Johny";
-    private String lastName = "Mnemonic";
 
     public void downloadSeances(ActionEvent actionEvent) {
         seances = HtmlService.main();
@@ -25,9 +23,5 @@ public class IndexBacking {
         seances.forEach(seance -> stringBuilder.append(seance.toString()).append("\n")
         );
         seancesString = stringBuilder.toString();
-    }
-
-    public String showGreeting() {
-        return "Hello " + firstName + " " + lastName + "!";
     }
 }
