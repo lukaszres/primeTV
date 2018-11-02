@@ -1,5 +1,6 @@
 package com.lkre.services.htmlService;
 
+import javax.faces.bean.ManagedBean;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
@@ -11,14 +12,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-/**
- * Download html from url
- */
+@ManagedBean
 public class HtmlService {
 
-    private static final DateFormat DATE_FORMAT = new SimpleDateFormat("HH:mm");
+    private final DateFormat DATE_FORMAT = new SimpleDateFormat("HH:mm");
 
-    public static List<Seance> main() {
+    public List<Seance> main() {
         List<String> channelStringList = getSelectedChannels();
         List<Channel> channelList = new ArrayList<>();
         channelStringList.forEach(
@@ -56,7 +55,7 @@ public class HtmlService {
         return seancesByGenre;
     }
 
-    private static List<String> getSelectedChannels() {
+    private List<String> getSelectedChannels() {
         List<String> listOfChannels = new ArrayList<>();
         for (ChannelLis channel : ChannelLis.values()) {
             listOfChannels.add(channel.getValue());
@@ -64,7 +63,7 @@ public class HtmlService {
         return listOfChannels;
     }
 
-    private static void showResult(List<Seance> seances) {
+    private void showResult(List<Seance> seances) {
         seances.forEach(seance -> {
             Optional<String> episodeOptional = seance.getEpisode();
             String episode = episodeOptional.orElse("");
@@ -77,7 +76,7 @@ public class HtmlService {
         System.out.println(seances.size());
     }
 
-    private static void saveResult(List<Seance> seances, List<String> availableGenres) throws IOException {
+    private void saveResult(List<Seance> seances, List<String> availableGenres) throws IOException {
         Writer out = new BufferedWriter(new OutputStreamWriter(
                 new FileOutputStream("program.txt"), StandardCharsets.UTF_8));
         seances.forEach(seance -> {
@@ -101,7 +100,7 @@ public class HtmlService {
         out.close();
     }
 
-    private static void sortByTime(List<Seance> seances) {
+    private void sortByTime(List<Seance> seances) {
         seances.sort(Comparator.comparing(Seance::getTime));
     }
 }
