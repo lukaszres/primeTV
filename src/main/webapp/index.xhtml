@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui">
@@ -13,23 +14,34 @@
 
         <p:panel header="PrimeFaces Hello World Example">
             <h:panelGrid columns="2" cellpadding="4">
-                <h:outputText value="First Name: " />
-                <p:inputText value="#{indexBacking.firstName}" />
+                <h:outputText value="First Name: "/>
+                <p:inputText value="#{indexBacking.firstName}"/>
 
-                <h:outputText value="Last Name: " />
-                <p:inputText value="#{indexBacking.lastName}" />
+                <h:outputText value="Last Name: "/>
+                <p:inputText value="#{indexBacking.lastName}"/>
 
                 <p:commandButton value="Submit" update="greeting"
-                                 oncomplete="PF('greetingDialog').show()" />
+                                 oncomplete="PF('greetingDialog').show()"/>
             </h:panelGrid>
         </p:panel>
 
         <p:dialog header="Greeting" widgetVar="greetingDialog"
                   modal="true" resizable="false">
             <h:panelGrid id="greeting" columns="1" cellpadding="4">
-                <h:outputText value="#{indexBacking.showGreeting()}" />
+                <h:outputText value="#{indexBacking.showGreeting()}"/>
             </h:panelGrid>
         </p:dialog>
+
+        <p:commandButton value="Download seances"
+                         update="seancesTable" actionListener="#{indexBacking.downloadSeances}"/>
+        <p:dataTable id="seancesTable" var="seance" value="#{indexBacking.getSeances()}">
+            <p:column headerText="Channel">
+                <h:outputText value="#{seance.channel}"/>
+            </p:column>
+            <p:column headerText="Title">
+                <h:outputText value="#{seance.title}"/>
+            </p:column>
+        </p:dataTable>
 
     </h:form>
 </h:body>

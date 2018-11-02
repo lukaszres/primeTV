@@ -15,8 +15,20 @@
         <servlet.version>3.1.0</servlet.version>
         <jsf.version>2.2.15</jsf.version>
         <primefaces.version>6.1</primefaces.version>
+        <loombok.version>1.18.4</loombok.version>
+        <jsoup.version>1.11.3</jsoup.version>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>${jsoup.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${loombok.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-core</artifactId>
