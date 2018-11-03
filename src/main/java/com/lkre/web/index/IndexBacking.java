@@ -1,4 +1,4 @@
-package com.lkre.index;
+package com.lkre.web.index;
 
 import com.lkre.services.htmlService.HtmlService;
 import com.lkre.services.htmlService.Seance;
