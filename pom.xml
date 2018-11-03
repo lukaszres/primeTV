@@ -18,6 +18,7 @@
         <primefaces.version>6.1</primefaces.version>
         <loombok.version>1.18.4</loombok.version>
         <jsoup.version>1.11.3</jsoup.version>
+        <postgresql.version>42.2.5</postgresql.version>
     </properties>
     <dependencies>
         <dependency>
@@ -54,6 +55,12 @@
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-jsp-api</artifactId>
             <version>${tomcat.version}</version>
+        </dependency>
+        <!-- postgresql -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgresql.version}</version>
         </dependency>
         <!-- Servlet -->
         <dependency>

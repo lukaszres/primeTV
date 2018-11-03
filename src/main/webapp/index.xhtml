@@ -13,7 +13,8 @@
     <h:form>
         <p:panel header="PrimeTv: schedule TV.">
             <h:panelGrid columns="1">
-                <p:commandButton value="Download seances"
+                <p:commandButton id="downloadSeances"
+                                 value="Download seances"
                                  widgetVar="downloadSeanceButton"
                                  update="textArea" actionListener="#{indexBacking.downloadSeances}"
                                  onclick="PF('downloadSeanceButton').disable();"
