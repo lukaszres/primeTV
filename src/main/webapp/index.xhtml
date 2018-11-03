@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <!--@elvariable id="seance" type="com.lkre.services.htmlService.Seance"-->
 <h:head>
     <title>PrimeTv - Tv schedule.</title>
@@ -21,8 +22,6 @@
             </h:panelGrid>
         </p:panel>
     </h:form>
-    <div style="position: fixed; bottom: 0; right: 0;">
-        <h:outputText value="version: #{infoBean.version} (#{infoBean.buildTime})"/>
-    </div>
+    <ui:include src="common/bottom.xhtml"/>
 </h:body>
 </html>
