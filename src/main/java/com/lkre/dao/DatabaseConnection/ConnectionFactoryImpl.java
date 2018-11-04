@@ -1,4 +1,4 @@
-package com.lkre.dao.logger.DatabaseConnection;
+package com.lkre.dao.DatabaseConnection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

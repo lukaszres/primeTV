@@ -1,7 +1,7 @@
 package com.lkre.dao.logger;
 
-import com.lkre.dao.logger.DatabaseConnection.ConnectionFactory;
-import com.lkre.dao.logger.DatabaseConnection.ConnectionFactoryImpl;
+import com.lkre.dao.DatabaseConnection.ConnectionFactory;
+import com.lkre.dao.DatabaseConnection.ConnectionFactoryImpl;
 
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
