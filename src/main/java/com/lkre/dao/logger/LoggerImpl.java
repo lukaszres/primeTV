@@ -1,15 +1,24 @@
 package com.lkre.dao.logger;
 
+import com.lkre.dao.logger.DatabaseConnection.ConnectionFactory;
+import com.lkre.dao.logger.DatabaseConnection.ConnectionFactoryImpl;
+
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 
 public class LoggerImpl implements Logger {
+    private ConnectionFactory connectionFactory;
+
     public void log(Site site, Activity activity, String details) {
+        connectionFactory = new ConnectionFactoryImpl();
         Timestamp currentTimestamp = new Timestamp(new java.util.Date().getTime());
         Connection connection = null;
         try {
-            connection = getConnection();
+            connection = connectionFactory.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "INSERT INTO TB_STATS (stt_created, stt_activity, stt_site, stt_ip, stt_user_agent, stt_details) " +
                             "VALUES (?, ?, ?, ?, ?, ?) ");
@@ -32,13 +41,6 @@ public class LoggerImpl implements Logger {
                 }
             }
         }
-    }
-
-    private static Connection getConnection() throws SQLException {
-        String username = "aiqyaaubzvwhay";
-        String password = "846d2a17be73677893f0594ceaddb64634b7726c20d7e41ad0637917f5977a0a";
-        String dbUrl = "jdbc:postgresql://ec2-46-51-184-229.eu-west-1.compute.amazonaws.com:5432/d5jfnje0l7sc5m?sslmode=require";
-        return DriverManager.getConnection(dbUrl, username, password);
     }
 
     private static String getIpAdress() {
