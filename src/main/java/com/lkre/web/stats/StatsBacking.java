@@ -21,7 +21,7 @@ public class StatsBacking {
 
     @PostConstruct
     public void init() {
-        logs = logger.getLogs();
         logger.log(Site.STATS, Activity.OPEN_SITE, null);
+        logs = logger.getLogs();
     }
 }
