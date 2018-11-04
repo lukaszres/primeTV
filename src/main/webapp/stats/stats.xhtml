@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<!--@elvariable id="log" type="com.lkre.models.Log"-->
+<h:head>
+    <title>PrimeTv - Statistics.</title>
+</h:head>
+
+<h:body>
+    <h:form>
+        <p:panel header="PrimeTv: statistics table.">
+            <p:dataTable value="#{statsBacking.logs}" var="log">
+                <p:column headerText="Id">
+                    <h:outputText value="#{log.id}"/>
+                </p:column>
+                <p:column headerText="Created">
+                    <h:outputText value="#{log.created}"/>
+                </p:column>
+                <p:column headerText="Site">
+                    <h:outputText value="#{log.site.value}"/>
+                </p:column>
+                <p:column headerText="IP">
+                    <h:outputText value="#{log.ip}"/>
+                </p:column>
+                <p:column headerText="Activity">
+                    <h:outputText value="#{log.activity.name()}"/>
+                </p:column>
+                <p:column headerText="Details">
+                    <h:outputText value="#{log.details}"/>
+                </p:column>
+                <p:column headerText="User agent">
+                    <h:outputText value="#{log.userAgent}"/>
+                </p:column>
+            </p:dataTable>
+        </p:panel>
+    </h:form>
+    <ui:include src="../common/bottom.xhtml"/>
+</h:body>
+</html>
