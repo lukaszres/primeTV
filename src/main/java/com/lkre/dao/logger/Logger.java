@@ -8,4 +8,6 @@ public interface Logger {
     void log(Site site, Activity activity, String details);
 
     List<Log> getLogs();
+
+    int count();
 }

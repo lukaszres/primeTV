@@ -1,5 +1,7 @@
 package com.lkre.web.common;
 
+import com.lkre.dao.logger.Logger;
+import com.lkre.dao.logger.LoggerImpl;
 import launch.Main;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,17 +13,25 @@ import java.io.IOException;
 import java.util.jar.Attributes;
 import java.util.jar.JarFile;
 
-@Getter
-@Setter
+
 @ManagedBean
 public class InfoBean {
+    private Logger logger = new LoggerImpl();
+    @Getter
+    @Setter
     private String version;
+    @Getter
+    @Setter
     private String buildTime;
+    @Getter
+    @Setter
+    private int visitors;
 
     @PostConstruct
     public void init() {
         buildTime = loadManifest("Build-Time");
         version = loadManifest("Implementation-Version");
+        visitors = logger.count();
     }
 
     private String loadManifest(String manifestEntry) {
