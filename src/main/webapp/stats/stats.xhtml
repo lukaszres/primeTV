@@ -3,37 +3,41 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-<!--@elvariable id="log" type="com.lkre.models.Log"-->
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+<!--@elvariable id="site" type="com.lkre.dao.logger.Site"-->
 <h:head>
     <title>PrimeTv - Statistics.</title>
 </h:head>
 
 <h:body>
-    <h:form>
-        <p:panel header="PrimeTv: statistics table.">
-            <p:dataTable value="#{statsBacking.logs}" var="log">
-                <p:column headerText="Id">
-                    <h:outputText value="#{log.id}"/>
-                </p:column>
-                <p:column headerText="Created">
-                    <h:outputText value="#{log.created}"/>
-                </p:column>
+    <h:form id="form">
+        <p:panel id="panel" header="PrimeTv: statistics.">
+            <p:dataTable value="#{statsBacking.sites}" var="site" sortBy="#{site.name()}">
                 <p:column headerText="Site">
-                    <h:outputText value="#{log.site.value}"/>
+                    <h:outputText value="#{site.value}"/>
                 </p:column>
-                <p:column headerText="IP">
-                    <h:outputText value="#{log.ip}"/>
+                <p:column headerText="Today">
+                    <h:outputText value="#{statsBacking.sitesVisits.get(site).today}"/>
                 </p:column>
-                <p:column headerText="Activity">
-                    <h:outputText value="#{log.activity.name()}"/>
+                <p:column headerText="Week">
+                    <h:outputText value="#{statsBacking.sitesVisits.get(site).week}"/>
                 </p:column>
-                <p:column headerText="Details">
-                    <h:outputText value="#{log.details}"/>
+                <p:column headerText="Month">
+                    <h:outputText value="#{statsBacking.sitesVisits.get(site).month}"/>
                 </p:column>
-                <p:column headerText="User agent">
-                    <h:outputText value="#{log.userAgent}"/>
-                </p:column>
+                <p:columnGroup type="footer">
+                    <p:row>
+                        <p:importConstants type="com.lkre.dao.logger.Period" var="Period"/>
+                        <p:column style="text-align:right" footerText="Totals:"/>
+                        <p:column style="text-align:right"
+                                  footerText="#{statsBacking.totalVisits(Period.TODAY)}"/>
+                        <p:column style="text-align:right"
+                                  footerText="#{statsBacking.totalVisits(Period.WEEK)}"/>
+                        <p:column style="text-align:right"
+                                  footerText="#{statsBacking.totalVisits(Period.MONTH)}"/>
+                    </p:row>
+                </p:columnGroup>
             </p:dataTable>
         </p:panel>
     </h:form>
