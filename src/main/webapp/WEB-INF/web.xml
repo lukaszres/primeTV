@@ -12,6 +12,10 @@
         <param-name>primefaces.FONT_AWESOME</param-name>
         <param-value>true</param-value>
     </context-param>
+    <context-param>
+        <param-name>javax.faces.SEPARATOR_CHAR</param-name>
+        <param-value>_</param-value>
+    </context-param>
 
     <!-- File(s) appended to a request for a URL that is not mapped to a web component -->
     <welcome-file-list>

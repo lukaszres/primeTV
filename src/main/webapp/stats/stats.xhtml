@@ -7,21 +7,23 @@
 >
 <!--@elvariable id="site" type="com.lkre.dao.logger.Site"-->
 <ui:composition template="/WEB-INF/templates/main-template.xhtml">
+    <ui:define name="css"><h:outputStylesheet name="css/stats.css"/></ui:define>
     <ui:define name="title">PrimeTv - Statistics.</ui:define>
     <ui:define name="body">
         <h:form id="form">
             <p:panel id="panel" header="PrimeTv: statistics.">
-                <p:dataTable value="#{statsBacking.sites}" var="site" sortBy="#{site.name()}">
-                    <p:column headerText="Site">
+                <p:dataTable id="visitTable" value="#{statsBacking.sites}" var="site"
+                             sortBy="#{site.name()}">
+                    <p:column headerText="Site" id="site">
                         <h:outputText value="#{site.value}"/>
                     </p:column>
-                    <p:column headerText="Today">
+                    <p:column headerText="Today" id="today">
                         <h:outputText value="#{statsBacking.sitesVisits.get(site).today}"/>
                     </p:column>
-                    <p:column headerText="Week">
+                    <p:column headerText="Week" id="week">
                         <h:outputText value="#{statsBacking.sitesVisits.get(site).week}"/>
                     </p:column>
-                    <p:column headerText="Month">
+                    <p:column headerText="Month" id="month">
                         <h:outputText value="#{statsBacking.sitesVisits.get(site).month}"/>
                     </p:column>
                     <p:columnGroup type="footer">
