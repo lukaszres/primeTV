@@ -6,41 +6,39 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 >
 <!--@elvariable id="site" type="com.lkre.dao.logger.Site"-->
-<h:head>
-    <title>PrimeTv - Statistics.</title>
-</h:head>
-
-<h:body>
-    <h:form id="form">
-        <p:panel id="panel" header="PrimeTv: statistics.">
-            <p:dataTable value="#{statsBacking.sites}" var="site" sortBy="#{site.name()}">
-                <p:column headerText="Site">
-                    <h:outputText value="#{site.value}"/>
-                </p:column>
-                <p:column headerText="Today">
-                    <h:outputText value="#{statsBacking.sitesVisits.get(site).today}"/>
-                </p:column>
-                <p:column headerText="Week">
-                    <h:outputText value="#{statsBacking.sitesVisits.get(site).week}"/>
-                </p:column>
-                <p:column headerText="Month">
-                    <h:outputText value="#{statsBacking.sitesVisits.get(site).month}"/>
-                </p:column>
-                <p:columnGroup type="footer">
-                    <p:row>
-                        <p:importConstants type="com.lkre.dao.logger.Period" var="Period"/>
-                        <p:column style="text-align:right" footerText="Totals:"/>
-                        <p:column style="text-align:right"
-                                  footerText="#{statsBacking.totalVisits(Period.TODAY)}"/>
-                        <p:column style="text-align:right"
-                                  footerText="#{statsBacking.totalVisits(Period.WEEK)}"/>
-                        <p:column style="text-align:right"
-                                  footerText="#{statsBacking.totalVisits(Period.MONTH)}"/>
-                    </p:row>
-                </p:columnGroup>
-            </p:dataTable>
-        </p:panel>
-    </h:form>
-    <ui:include src="../WEB-INF/templates/bottom.xhtml"/>
-</h:body>
+<ui:composition template="/WEB-INF/templates/main-template.xhtml">
+    <ui:define name="title">PrimeTv - Statistics.</ui:define>
+    <ui:define name="body">
+        <h:form id="form">
+            <p:panel id="panel" header="PrimeTv: statistics.">
+                <p:dataTable value="#{statsBacking.sites}" var="site" sortBy="#{site.name()}">
+                    <p:column headerText="Site">
+                        <h:outputText value="#{site.value}"/>
+                    </p:column>
+                    <p:column headerText="Today">
+                        <h:outputText value="#{statsBacking.sitesVisits.get(site).today}"/>
+                    </p:column>
+                    <p:column headerText="Week">
+                        <h:outputText value="#{statsBacking.sitesVisits.get(site).week}"/>
+                    </p:column>
+                    <p:column headerText="Month">
+                        <h:outputText value="#{statsBacking.sitesVisits.get(site).month}"/>
+                    </p:column>
+                    <p:columnGroup type="footer">
+                        <p:row>
+                            <p:importConstants type="com.lkre.dao.logger.Period" var="Period"/>
+                            <p:column style="text-align:right" footerText="Totals:"/>
+                            <p:column style="text-align:right"
+                                      footerText="#{statsBacking.totalVisits(Period.TODAY)}"/>
+                            <p:column style="text-align:right"
+                                      footerText="#{statsBacking.totalVisits(Period.WEEK)}"/>
+                            <p:column style="text-align:right"
+                                      footerText="#{statsBacking.totalVisits(Period.MONTH)}"/>
+                        </p:row>
+                    </p:columnGroup>
+                </p:dataTable>
+            </p:panel>
+        </h:form>
+    </ui:define>
+</ui:composition>
 </html>
