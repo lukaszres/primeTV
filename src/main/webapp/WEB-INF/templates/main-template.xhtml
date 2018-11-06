@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+>
+<h:head>
+    <title><ui:insert name="title">index</ui:insert></title>
+    <f:facet name="first">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    </f:facet>
+    <h:outputStylesheet name="css/common.css"/>
+    <ui:insert name="css"/>
+</h:head>
+<h:body>
+    <div id="page">
+        <div id="body-wrapper">
+            <div id="content">
+                <ui:insert name="body">
+                    <ui:include src="body.xhtml"/>
+                </ui:insert>
+            </div>
+        </div>
+        <ui:include src="bottom.xhtml"/>
+    </div>
+</h:body>
+</html>

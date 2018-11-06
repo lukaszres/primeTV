@@ -1,0 +1,20 @@
+#form_visitTable table {
+    width: auto !important;
+}
+
+#form_visitTable_site {
+    width: 150px;
+    text-align: right;
+}
+
+#form_visitTable_today, #form_visitTable_week, #form_visitTable_month {
+    width: 50px;
+}
+
+#form_visitTable td, #form_visitTable th {
+    text-align: center !important;
+}
+
+.ui-datatable thead th, .ui-datatable tfoot td {
+    font-weight: bold !important;
+}
