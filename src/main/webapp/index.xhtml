@@ -5,24 +5,24 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <!--@elvariable id="seance" type="com.lkre.services.htmlService.Seance"-->
-<h:head>
-    <title>PrimeTv - Tv schedule.</title>
-</h:head>
-
-<h:body>
-    <h:form>
-        <p:panel header="PrimeTv: schedule TV.">
-            <h:panelGrid columns="1">
-                <p:commandButton id="downloadSeances"
-                                 value="Download seances"
-                                 widgetVar="downloadSeanceButton"
-                                 update="textArea" actionListener="#{indexBacking.downloadSeances}"
-                                 onclick="PF('downloadSeanceButton').disable();"
-                                 oncomplete="PF('downloadSeanceButton').enable();"/>
-                <p:inputTextarea id="textArea" rows="10" cols="50" value="#{indexBacking.seancesString}"/>
-            </h:panelGrid>
-        </p:panel>
-    </h:form>
-    <ui:include src="common/bottom.xhtml"/>
-</h:body>
+<ui:composition template="/WEB-INF/templates/main-template.xhtml">
+    <ui:define name="title">PrimeTv - Tv schedule.</ui:define>
+    <ui:define name="body">
+        <h:form>
+            <p:panel header="PrimeTv: schedule TV.">
+                <h:panelGrid columns="1">
+                    <p:commandButton id="downloadSeances"
+                                     value="Download seances"
+                                     widgetVar="downloadSeanceButton"
+                                     update="textArea"
+                                     actionListener="#{indexBacking.downloadSeances}"
+                                     onclick="PF('downloadSeanceButton').disable();"
+                                     oncomplete="PF('downloadSeanceButton').enable();"/>
+                    <p:inputTextarea id="textArea" rows="10" cols="50"
+                                     value="#{indexBacking.seancesString}"/>
+                </h:panelGrid>
+            </p:panel>
+        </h:form>
+    </ui:define>
+</ui:composition>
 </html>
