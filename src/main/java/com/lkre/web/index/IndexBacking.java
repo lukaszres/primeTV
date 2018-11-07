@@ -2,7 +2,6 @@ package com.lkre.web.index;
 
 import com.lkre.dao.logger.Activity;
 import com.lkre.dao.logger.Logger;
-import com.lkre.dao.logger.LoggerImpl;
 import com.lkre.dao.logger.Site;
 import com.lkre.services.htmlService.HtmlService;
 import com.lkre.services.htmlService.Seance;
@@ -26,7 +25,8 @@ public class IndexBacking {
     private String seancesString;
     @ManagedProperty(value = "#{htmlService}")
     private HtmlService htmlService;
-    private Logger logger = new LoggerImpl();
+    @ManagedProperty(value = "#{logger}")
+    private Logger logger = new Logger();
 
     @PostConstruct
     public void init() {

@@ -8,22 +8,20 @@ import lombok.Setter;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
 import java.util.*;
 
+@Getter
+@Setter
 @ManagedBean
+@ViewScoped
 public class StatsBacking {
-    private Logger logger = new LoggerImpl();
-    @Getter
-    @Setter
+    @ManagedProperty(value = "#{logger}")
+    private Logger logger = new Logger();
     private List<Log> logs;
-    @Getter
-    @Setter
     private List<Site> sites;
-    @Getter
-    @Setter
     private Site selectedSite;
-    @Getter
-    @Setter
     private Map<Site, SiteVisit> sitesVisits;
 
     @PostConstruct
