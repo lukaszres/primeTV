@@ -53,11 +53,8 @@ public class UrlHtmlService implements HtmlService {
 
         List<Seance> seancesByGenre = ChannelFactory.getSeancesByGenre(channelList, selectedGenres);
         sortByTime(seancesByGenre);
-//        showResult(seancesByGenre);
-//        showAvailableGenres(availableGenres);
-//        System.out.println(availableGenres);
-//        saveResult(seancesByGenre, availableGenres);
-//        int read = System.in.read();
+//         TODO LukRes 2018-11-07: this method should return all seances
+//         TODO LukRes 2018-11-07: implement adding to database
         return seancesByGenre;
     }
 

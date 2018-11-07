@@ -82,7 +82,7 @@ class ChannelFactory {
         );
         return availableGenres;
     }
-
+// TODO LukRes 2018-11-07: create getAllSeances method
     static List<Seance> getSeancesByGenre(List<Channel> channels, List<String> selectedGenres) {
         List<Seance> seances = new ArrayList<>();
 
