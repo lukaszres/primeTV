@@ -3,7 +3,8 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 <!--@elvariable id="seance" type="com.lkre.services.htmlService.Seance"-->
 <ui:composition template="/WEB-INF/templates/main-template.xhtml">
     <ui:define name="title">PrimeTv - Tv schedule.</ui:define>
@@ -14,13 +15,19 @@
                     <p:commandButton id="downloadSeances"
                                      value="Download seances"
                                      widgetVar="downloadSeanceButton"
-                                     update="textArea seancesNumber"
+                                     update="textArea seancesNumber selectGenres"
                                      actionListener="#{indexBacking.downloadSeances}"
                                      onclick="PF('downloadSeanceButton').disable();"
                                      oncomplete="PF('downloadSeanceButton').enable();"
                                      icon="fa fa-fw fa-download"/>
                     <h:outputText id="seancesNumber"
                                   value="#{indexBacking.seances != null ? indexBacking.seances.size() : 0} seances available."/>
+                    <p:selectCheckboxMenu id="selectGenres" value="#{indexBacking.selectedGenres}"
+                                          label="Genres" multiple="true"
+                                          filter="true" filterMatchMode="startsWith"
+                                          panelStyle="width:250px">
+                        <f:selectItems value="#{indexBacking.genres}"/>
+                    </p:selectCheckboxMenu>
                     <p:inputTextarea id="textArea" rows="10" cols="100"
                                      value="#{indexBacking.seancesString}"/>
                 </h:panelGrid>
