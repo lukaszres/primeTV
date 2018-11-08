@@ -5,17 +5,17 @@
 
 ## Features
 
-* PrimeTV can show a chosed genres of the seance.
-* For now they are static genres:
-  * horror
-  * horror komediowy
-  * horror SF
-  * thriller
-  * thriller SF
+* PrimeTV can show a chosen genres of the seance.
 
-## Screensots
+## Manual
 
-[![Screenshot](https://preview.ibb.co/g4cPv0/ddd.png)](https://image.ibb.co/daHPv0/ddd.png)
+1. Click **Download seances** button and wait.
+2. When seances downloaded choose genres.
+3. Seances will be showing according to selected genres dynamically.
+
+## Screenshots
+
+[![Screenshot](https://preview.ibb.co/kPMqhq/Screenshot-from-2018-11-08-20-26-38.png)](https://image.ibb.co/btMZ8V/Screenshot-from-2018-11-08-20-26-38.png)
 
 ## Follow the Application
 
