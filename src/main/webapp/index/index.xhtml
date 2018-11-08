@@ -9,7 +9,7 @@
 <ui:composition template="/WEB-INF/templates/main-template.xhtml">
     <ui:define name="title">PrimeTv - Tv schedule.</ui:define>
     <ui:define name="body">
-        <h:form>
+        <h:form id="form">
             <p:panel header="PrimeTv: schedule TV.">
                 <h:panelGrid columns="1">
                     <p:commandButton id="downloadSeances"
@@ -26,6 +26,7 @@
                                           label="Genres" multiple="true"
                                           filter="true" filterMatchMode="startsWith"
                                           panelStyle="width:250px">
+                        <p:ajax event="change" listener="#{indexBacking.onSelectGenresChanged}"/>
                         <f:selectItems value="#{indexBacking.genres}"/>
                     </p:selectCheckboxMenu>
                     <p:inputTextarea id="textArea" rows="10" cols="100"

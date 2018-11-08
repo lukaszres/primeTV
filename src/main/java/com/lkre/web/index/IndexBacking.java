@@ -8,6 +8,7 @@ import com.lkre.services.htmlService.HtmlServiceFactory;
 import com.lkre.services.htmlService.Seance;
 import lombok.Getter;
 import lombok.Setter;
+import org.primefaces.context.RequestContext;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -24,6 +25,7 @@ import java.util.List;
 @ViewScoped
 public class IndexBacking {
     private List<Seance> seances;
+    private List<Seance> selectedSeances = new ArrayList<>();
     private String seancesString;
     private List<String> genres = new ArrayList<>();
     private List<String> selectedGenres = new ArrayList<>();
@@ -44,12 +46,16 @@ public class IndexBacking {
         logger.log(Site.INDEX, Activity.PUSH_BUTTON, details);
 
         seances = htmlService.main();
+        createSeancesString();
+        createGenres();
+    }
+
+    private void createSeancesString() {
         StringBuilder stringBuilder = new StringBuilder();
-        seances.forEach(seance -> stringBuilder.append(seance.toString())
+        selectedSeances.forEach(seance -> stringBuilder.append(seance.toString())
                 .append("\n")
         );
         seancesString = stringBuilder.toString();
-        createGenres();
     }
 
     private void createGenres() {
@@ -60,5 +66,20 @@ public class IndexBacking {
             }
         });
         Collections.sort(genres);
+    }
+
+    private void createSelectedSeances() {
+        selectedSeances.clear();
+        seances.forEach(seance -> selectedGenres.forEach(genre -> {
+            if (seance.getGenre()
+                    .equals(genre))
+                selectedSeances.add(seance);
+        }));
+    }
+
+    public void onSelectGenresChanged() {
+        createSelectedSeances();
+        createSeancesString();
+        RequestContext.getCurrentInstance().update("form_textArea");
     }
 }
