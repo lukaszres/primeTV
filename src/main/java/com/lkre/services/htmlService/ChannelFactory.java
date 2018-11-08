@@ -30,10 +30,13 @@ class ChannelFactory {
 
         Document document = Jsoup.parse(new URL(url).openStream(), "UTF-8", url);
 
-        Optional<Element> dayOptional = Optional.ofNullable(document.getElementsByClass("day_0").first());
+        Optional<Element> dayOptional = Optional.ofNullable(document.getElementsByClass("day_0")
+                .first());
         List<Seance> seancesList = new ArrayList<>();
-        if (dayOptional.isPresent() && dayOptional.get().hasText()) {
-            Elements seance = dayOptional.get().getElementsByClass("seance");
+        if (dayOptional.isPresent() && dayOptional.get()
+                .hasText()) {
+            Elements seance = dayOptional.get()
+                    .getElementsByClass("seance");
             Optional<Elements> seancesOptional = Optional.ofNullable(seance);
             if (seancesOptional.isPresent()) {
                 for (Element s : seancesOptional.get()) {
@@ -45,10 +48,16 @@ class ChannelFactory {
         return new Channel(seancesList);
     }
 
-    private static Seance createSeance(String channel, String date, Element seance) throws ParseException {
+    private static Seance createSeance(
+            String channel,
+            String date,
+            Element seance
+    ) throws ParseException {
         Date dateTime = new SimpleDateFormat(TIME_PATTERN).parse(date);
-        Optional<Element> genreOptional = Optional.ofNullable(seance.getElementsByClass("st").first());
-        String genreString = genreOptional.isPresent() ? genreOptional.get().ownText() : LACK_OF_GENRE;
+        Optional<Element> genreOptional = Optional.ofNullable(seance.getElementsByClass("st")
+                .first());
+        String genreString = genreOptional.isPresent() ? genreOptional.get()
+                .ownText() : LACK_OF_GENRE;
 
         Matcher matcher = EPISODE_PATTERN.matcher(genreString);
         String episode = null;
@@ -58,11 +67,15 @@ class ChannelFactory {
             episode = episodeString;
         }
         genreOptional.ifPresent(Node::remove);
-        Optional<Element> titleOptional = Optional.ofNullable(seance.getElementsByClass("sd").first());
-        String seanceTitle = titleOptional.isPresent() ? titleOptional.get().ownText() : LACK_OF_TITLE;
+        Optional<Element> titleOptional = Optional.ofNullable(seance.getElementsByClass("sd")
+                .first());
+        String seanceTitle = titleOptional.isPresent() ? titleOptional.get()
+                .ownText() : LACK_OF_TITLE;
 
         if (titleOptional.isPresent()) {
-            Element hrefTitle = titleOptional.get().select("a[href]").first();
+            Element hrefTitle = titleOptional.get()
+                    .select("a[href]")
+                    .first();
             if (hrefTitle != null && hrefTitle.hasText()) {
                 seanceTitle = hrefTitle.html();
             }
@@ -74,25 +87,38 @@ class ChannelFactory {
         List<String> availableGenres = new ArrayList<>();
 
         channels.forEach(channel ->
-                channel.getGenres().forEach(genre -> {
-                    if (!availableGenres.contains(genre)) {
-                        availableGenres.add(genre);
-                    }
-                })
+                channel.getGenres()
+                        .forEach(genre -> {
+                            if (!availableGenres.contains(genre)) {
+                                availableGenres.add(genre);
+                            }
+                        })
         );
         return availableGenres;
     }
-// TODO LukRes 2018-11-07: create getAllSeances method
-    static List<Seance> getSeancesByGenre(List<Channel> channels, List<String> selectedGenres) {
+
+    static List<Seance> getAllSeances(List<Channel> channels) {
+        List<Seance> seances = new ArrayList<>();
+        channels.forEach(channel -> seances.addAll(channel.getSeances()));
+        return seances;
+    }
+
+    static List<Seance> getSeancesByGenre(
+            List<Channel> channels,
+            List<String> selectedGenres
+    ) {
         List<Seance> seances = new ArrayList<>();
 
         selectedGenres.forEach(genre ->
                 channels.forEach(channel -> {
-                    if (channel.getGenres().contains(genre)) {
-                        channel.getSeances().forEach(seance -> {
-                            if (seance.getGenre().equals(genre))
-                                seances.add(seance);
-                        });
+                    if (channel.getGenres()
+                            .contains(genre)) {
+                        channel.getSeances()
+                                .forEach(seance -> {
+                                    if (seance.getGenre()
+                                            .equals(genre))
+                                        seances.add(seance);
+                                });
                     }
                 })
         );
