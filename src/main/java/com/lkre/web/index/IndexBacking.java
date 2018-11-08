@@ -15,6 +15,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Getter
@@ -58,5 +59,6 @@ public class IndexBacking {
                 genres.add(genre);
             }
         });
+        Collections.sort(genres);
     }
 }
