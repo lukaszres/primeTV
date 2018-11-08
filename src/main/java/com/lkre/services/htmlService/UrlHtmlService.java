@@ -1,5 +1,7 @@
 package com.lkre.services.htmlService;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
@@ -10,8 +12,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 
 @ManagedBean
 @ViewScoped
@@ -51,11 +51,13 @@ public class UrlHtmlService implements HtmlService {
         selectedGenres.add("thriller SF");
 //        }
 
-        List<Seance> seancesByGenre = ChannelFactory.getSeancesByGenre(channelList, selectedGenres);
-        sortByTime(seancesByGenre);
+//        List<Seance> seancesByGenre = ChannelFactory.getSeancesByGenre(channelList,
+// selectedGenres);
+        List<Seance> allSeances = ChannelFactory.getAllSeances(channelList);
+        sortByTime(allSeances);
 //         TODO LukRes 2018-11-07: this method should return all seances
 //         TODO LukRes 2018-11-07: implement adding to database
-        return seancesByGenre;
+        return allSeances;
     }
 
     private List<String> getSelectedChannels() {
