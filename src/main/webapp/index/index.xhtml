@@ -14,12 +14,14 @@
                     <p:commandButton id="downloadSeances"
                                      value="Download seances"
                                      widgetVar="downloadSeanceButton"
-                                     update="textArea"
+                                     update="textArea seancesNumber"
                                      actionListener="#{indexBacking.downloadSeances}"
                                      onclick="PF('downloadSeanceButton').disable();"
                                      oncomplete="PF('downloadSeanceButton').enable();"
                                      icon="fa fa-fw fa-download"/>
-                    <p:inputTextarea id="textArea" rows="10" cols="50"
+                    <h:outputText id="seancesNumber"
+                                  value="#{indexBacking.seances != null ? indexBacking.seances.size() : 0} seances available."/>
+                    <p:inputTextarea id="textArea" rows="10" cols="100"
                                      value="#{indexBacking.seancesString}"/>
                 </h:panelGrid>
             </p:panel>
