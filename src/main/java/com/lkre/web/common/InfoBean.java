@@ -1,30 +1,27 @@
 package com.lkre.web.common;
 
-import com.lkre.dao.logger.Logger;
-import com.lkre.dao.logger.LoggerImpl;
-import launch.Main;
-import lombok.Getter;
-import lombok.Setter;
-
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
 import java.io.File;
 import java.io.IOException;
 import java.util.jar.Attributes;
 import java.util.jar.JarFile;
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
+import com.lkre.dao.logger.Logger;
+import launch.Main;
+import lombok.Getter;
+import lombok.Setter;
 
-
+@Getter
+@Setter
 @ManagedBean
+@ViewScoped
 public class InfoBean {
-    private Logger logger = new LoggerImpl();
-    @Getter
-    @Setter
+    @ManagedProperty(value = "#{logger}")
+    private Logger logger;
     private String version;
-    @Getter
-    @Setter
     private String buildTime;
-    @Getter
-    @Setter
     private int visitors;
 
     @PostConstruct
@@ -35,7 +32,8 @@ public class InfoBean {
     }
 
     private String loadManifest(String manifestEntry) {
-        String absolutePath = Main.getRootFolder().getAbsolutePath();
+        String absolutePath = Main.getRootFolder()
+                                  .getAbsolutePath();
         File file = new File(absolutePath + "/target/embeddedTomcatSample.jar");
         try {
             JarFile jar = new java.util.jar.JarFile(file);
