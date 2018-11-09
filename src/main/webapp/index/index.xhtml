@@ -30,7 +30,15 @@
                         <f:selectItems value="#{indexBacking.genres}"/>
                     </p:selectCheckboxMenu>
                     <p:inputTextarea id="textArea" rows="10" cols="100"
-                                     value="#{indexBacking.seancesString}"/>
+                                     value="#{indexBacking.seancesString}"
+                                     onclick="copyToClipboard();"/>
+                    <script type="text/javascript">
+                        function copyToClipboard() {
+                            var copyText = document.getElementById("form_textArea");
+                            copyText.select();
+                            document.execCommand("copy");
+                        }
+                    </script>
                 </h:panelGrid>
             </p:panel>
         </h:form>
