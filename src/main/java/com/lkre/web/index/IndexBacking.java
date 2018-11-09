@@ -29,7 +29,6 @@ public class IndexBacking {
     private String seancesString;
     private List<String> genres = new ArrayList<>();
     private List<String> selectedGenres = new ArrayList<>();
-    //    @ManagedProperty(value = "#{urlHtmlService}")
     private HtmlService htmlService = HtmlServiceFactory.createService();
     @ManagedProperty(value = "#{logger}")
     private Logger logger = new Logger();
@@ -40,12 +39,10 @@ public class IndexBacking {
     }
 
     public void downloadSeances(ActionEvent e) {
-
         String details = e.getComponent()
                 .getId();
         logger.log(Site.INDEX, Activity.PUSH_BUTTON, details);
-
-        seances = htmlService.main();
+        seances = htmlService.downloadSeances();
         createSeancesString();
         createGenres();
     }
