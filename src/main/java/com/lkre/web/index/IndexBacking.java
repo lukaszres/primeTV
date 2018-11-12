@@ -3,6 +3,7 @@ package com.lkre.web.index;
 import com.lkre.dao.logger.Activity;
 import com.lkre.dao.logger.Logger;
 import com.lkre.dao.logger.Site;
+import com.lkre.services.cookieService.CookieHandler;
 import com.lkre.services.htmlService.HtmlService;
 import com.lkre.services.htmlService.HtmlServiceFactory;
 import com.lkre.services.htmlService.Seance;
@@ -24,6 +25,9 @@ import java.util.List;
 @ManagedBean
 @ViewScoped
 public class IndexBacking {
+    private final String GENRES_COOKIES = "userSelectedGenres";
+    private final int COOKIES_EXPIRATION_TIME = 3 * 60;
+
     private List<Seance> seances;
     private List<Seance> selectedSeances = new ArrayList<>();
     private String seancesString;
@@ -75,8 +79,27 @@ public class IndexBacking {
     }
 
     public void onSelectGenresChanged() {
+        CookieHandler.setCookie(GENRES_COOKIES, selectedGenresString(), COOKIES_EXPIRATION_TIME);
         createSelectedSeances();
         createSeancesString();
         RequestContext.getCurrentInstance().update("form_textArea");
+    }
+
+    private String selectedGenresString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        selectedGenres.forEach(genre -> stringBuilder.append(prepareGenreString(genre)));
+        String s = stringBuilder.toString();
+        int length = s.length();
+        if (length > 0) {
+            s = s.substring(0, s.length() - 1);
+        }
+        return s;
+    }
+
+    private String prepareGenreString(String genre) {
+        if (genre != null && genre.length() > 0)
+            return genre.replace(" ", "_").replace(";", "_:_") + "|";
+        else
+            return "";
     }
 }
