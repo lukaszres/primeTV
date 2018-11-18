@@ -16,6 +16,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
+import javax.servlet.http.Cookie;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -49,6 +50,8 @@ public class IndexBacking {
         seances = htmlService.downloadSeances();
         createSeancesString();
         createGenres();
+        importSelectedGenres();
+        updateTextArea();
     }
 
     private void createSeancesString() {
@@ -80,6 +83,10 @@ public class IndexBacking {
 
     public void onSelectGenresChanged() {
         CookieHandler.setCookie(GENRES_COOKIES, selectedGenresString(), COOKIES_EXPIRATION_TIME);
+        updateTextArea();
+    }
+
+    private void updateTextArea() {
         createSelectedSeances();
         createSeancesString();
         RequestContext.getCurrentInstance().update("form_textArea");
@@ -101,5 +108,24 @@ public class IndexBacking {
             return genre.replace(" ", "_").replace(";", "_:_") + "|";
         else
             return "";
+    }
+
+    private void importSelectedGenres() {
+        Cookie cookie = CookieHandler.getCookie(GENRES_COOKIES);
+        selectedGenres = prepareGenreList(cookie);
+    }
+
+    private List<String> prepareGenreList(Cookie cookie) {
+        if (cookie != null) {
+            String selectedGenresString = cookie.getValue();
+            String[] split = selectedGenresString.split("\\|");
+            List<String> selectedGenresList = new ArrayList<>();
+            for (String genre : split) {
+                String replace = genre.replace("_:_", ";").replace("_", " ");
+                selectedGenresList.add(replace);
+            }
+            return selectedGenresList;
+        } else
+            return null;
     }
 }
