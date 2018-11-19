@@ -9,6 +9,23 @@
 <ui:composition template="/WEB-INF/templates/main-template.xhtml">
     <ui:define name="title">PrimeTv - Tv schedule.</ui:define>
     <ui:define name="body">
+        <h:form id="acceptCookiesForm">
+            <p:confirmDialog widgetVar="acceptCookieDialog" global="true" showEffect="fade"
+                             hideEffect="fade" closable="false"
+                             rendered="#{!indexBacking.cookiesAccepted}" visible="true">
+                <f:facet name="message">
+                    <h:outputText value="Do you accept cookies?"/>
+                </f:facet>
+                <p:commandButton value="Yes" styleClass="ui-confirmdialog-yes"
+                                 type="button"
+                                 icon="ui-icon-check fa fa-check white Fs14"
+                                 actionListener="#{indexBacking.onAcceptCookie}"
+                                 oncomplete="PF('acceptCookieDialog').hide();"/>
+                <p:commandButton value="No" onclick="location.href = 'http://www.google.com';"
+                                 type="button" styleClass="ui-confirmdialog-no"
+                                 icon="ui-icon-close fa fa-close white Fs14"/>
+            </p:confirmDialog>
+        </h:form>
         <h:form id="form">
             <p:panel header="PrimeTv: schedule TV.">
                 <h:panelGrid columns="1">
@@ -42,6 +59,7 @@
                 </h:panelGrid>
             </p:panel>
         </h:form>
+
     </ui:define>
 </ui:composition>
 </html>

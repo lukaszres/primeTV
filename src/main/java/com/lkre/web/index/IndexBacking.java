@@ -21,14 +21,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static com.lkre.web.common.cookies.CookieExpiration.MONTH;
+import static com.lkre.web.common.cookies.CookieExpiration.WEEK;
+import static com.lkre.web.common.cookies.Cookies.ACCEPTED_COOKIES;
+import static com.lkre.web.common.cookies.Cookies.GENRES_COOKIES;
+
 @Getter
 @Setter
 @ManagedBean
 @ViewScoped
 public class IndexBacking {
-    private final String GENRES_COOKIES = "userSelectedGenres";
-    private final int COOKIES_EXPIRATION_TIME = 3 * 60;
-
     private List<Seance> seances;
     private List<Seance> selectedSeances = new ArrayList<>();
     private String seancesString;
@@ -37,10 +39,16 @@ public class IndexBacking {
     private HtmlService htmlService = HtmlServiceFactory.createService();
     @ManagedProperty(value = "#{logger}")
     private Logger logger = new Logger();
+    private boolean isCookiesAccepted;
 
     @PostConstruct
     public void init() {
         logger.log(Site.INDEX, Activity.OPEN_SITE, null);
+        Cookie acceptedCookie = CookieHandler.getCookie(ACCEPTED_COOKIES);
+        isCookiesAccepted = false;
+        if (acceptedCookie != null) {
+            isCookiesAccepted = acceptedCookie.getValue().equalsIgnoreCase("true");
+        }
     }
 
     public void downloadSeances(ActionEvent e) {
@@ -82,7 +90,7 @@ public class IndexBacking {
     }
 
     public void onSelectGenresChanged() {
-        CookieHandler.setCookie(GENRES_COOKIES, selectedGenresString(), COOKIES_EXPIRATION_TIME);
+        CookieHandler.setCookie(GENRES_COOKIES, selectedGenresString(), MONTH);
         updateTextArea();
     }
 
@@ -127,5 +135,10 @@ public class IndexBacking {
             return selectedGenresList;
         } else
             return null;
+    }
+
+    public void onAcceptCookie(ActionEvent e) {
+        isCookiesAccepted = true;
+        CookieHandler.setCookie(ACCEPTED_COOKIES, "true", WEEK);
     }
 }
