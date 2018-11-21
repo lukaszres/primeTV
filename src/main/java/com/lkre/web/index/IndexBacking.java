@@ -138,6 +138,7 @@ public class IndexBacking {
     }
 
     public void onAcceptCookie(ActionEvent e) {
+
         isCookiesAccepted = true;
         CookieHandler.setCookie(ACCEPTED_COOKIES, "true", WEEK);
     }
