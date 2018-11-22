@@ -134,7 +134,7 @@ public class IndexBacking {
             }
             return selectedGenresList;
         } else
-            return null;
+            return new ArrayList<>();
     }
 
     public void onAcceptCookie(ActionEvent e) {
