@@ -4,24 +4,3 @@ body, .ui-widget, .ui-button-text {
     font-weight: normal !important;
 }
 
-.acceptCookiesForm {
-    bottom: 0;
-    background-color: rgb(17, 17, 17);
-    z-index: 999999;
-    opacity: 0.9;
-    position: fixed;
-    padding: 15px 0 5px;
-    width: 100%;
-    left: 0;
-    font-size: 13px;
-    font-weight: normal;
-    text-align: left;
-    letter-spacing: normal;
-    color: rgb(255, 255, 255);
-    font-family: Arial, sans-serif;
-    box-shadow: rgb(0, 0, 0) 0 0 8px;
-}
-
-.ui-confirm-dialog-message {
-
-}

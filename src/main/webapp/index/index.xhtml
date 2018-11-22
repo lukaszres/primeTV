@@ -42,20 +42,6 @@
                 </h:panelGrid>
             </p:panel>
         </h:form>
-        <h:form id="acceptCookiesForm">
-            <h:panelGroup id="acceptCookieDialog" layout="block">
-                <h:panelGrid rendered="#{!indexBacking.cookiesAccepted}"
-                             styleClass="acceptCookiesForm">
-                    <h:outputText value="#{infoBean.COOKIE_MANIFEST}"/>
-                    <p:commandButton value="Accept" styleClass="ui-confirmdialog-yes"
-                                     icon="ui-icon-check fa fa-check white Fs14"
-                                     actionListener="#{indexBacking.onAcceptCookie}"
-                                     update="acceptCookieDialog">
-                        <p:ajax update="acceptCookieDialog"/>
-                    </p:commandButton>
-                </h:panelGrid>
-            </h:panelGroup>
-        </h:form>
     </ui:define>
 </ui:composition>
 </html>
