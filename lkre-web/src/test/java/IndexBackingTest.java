@@ -1,5 +1,4 @@
-package com.lkre.web.index;
-
+import index.IndexBacking;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

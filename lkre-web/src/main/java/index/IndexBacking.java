@@ -1,4 +1,4 @@
-package com.lkre.web.index;
+package index;
 
 import com.lkre.dao.logger.Activity;
 import com.lkre.dao.logger.Logger;

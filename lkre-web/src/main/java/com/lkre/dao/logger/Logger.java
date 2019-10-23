@@ -1,15 +1,16 @@
 package com.lkre.dao.logger;
 
-import java.sql.*;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
+import com.lkre.dao.DatabaseConnection.ConnectionFactory;
+import com.lkre.dao.DatabaseConnection.ConnectionFactoryImpl;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
-import com.lkre.dao.DatabaseConnection.ConnectionFactory;
-import com.lkre.dao.DatabaseConnection.ConnectionFactoryImpl;
+import java.sql.*;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 
 @ManagedBean
 @ViewScoped

@@ -1,6 +1,9 @@
 package com.lkre.web.stats;
 
-import com.lkre.dao.logger.*;
+import com.lkre.dao.logger.Activity;
+import com.lkre.dao.logger.Logger;
+import com.lkre.dao.logger.Period;
+import com.lkre.dao.logger.Site;
 import com.lkre.models.Log;
 import com.lkre.models.SiteVisit;
 import lombok.Getter;

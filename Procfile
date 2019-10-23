@@ -1,1 +1,1 @@
-web: sh target/bin/webapp
+web: sh lkre-web/target/bin/webapp
