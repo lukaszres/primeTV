@@ -4,12 +4,12 @@ import com.lkre.dao.logger.Activity;
 import com.lkre.dao.logger.Logger;
 import com.lkre.dao.logger.Site;
 import com.lkre.services.cookieService.CookieHandler;
-import htmlService.htmlService.HtmlService;
-import htmlService.htmlService.HtmlServiceFactory;
-import htmlService.htmlService.Seance;
 import lombok.Getter;
 import lombok.Setter;
 import org.primefaces.context.RequestContext;
+import pl.lkre.program.generator.HtmlService;
+import pl.lkre.program.generator.model.Seance;
+import pl.lkre.program.generator.service.HtmlServiceImpl;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -36,7 +36,7 @@ public class IndexBacking {
     private String seancesString;
     private List<String> genres = new ArrayList<>();
     private List<String> selectedGenres = new ArrayList<>();
-    private HtmlService htmlService = HtmlServiceFactory.createService();
+    private HtmlService htmlService = new HtmlServiceImpl();
     @ManagedProperty(value = "#{logger}")
     private Logger logger = new Logger();
     private boolean isCookiesAccepted;

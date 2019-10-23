@@ -1,10 +1,12 @@
-package htmlService.htmlService;
+package pl.lkre.program.generator.service;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
+import pl.lkre.program.generator.model.Channel;
+import pl.lkre.program.generator.model.Seance;
 
 import java.io.IOException;
 import java.net.URL;
@@ -24,6 +26,8 @@ class ChannelFactory {
     private final static String LACK_OF_TIME = "0000,00,00,00,00";
     private final static String LACK_OF_TITLE = "brak tytułu";
     private final static String LACK_OF_GENRE = "brak gatunku";
+
+    private static GenreService genreService = new GenreService();
 
     static Channel getChannel(String channel) throws IOException, ParseException {
         String url = "https://www.filmweb.pl/program-tv/" + channel;
@@ -45,7 +49,8 @@ class ChannelFactory {
                 }
             }
         }
-        return new Channel(seancesList);
+        List<String> genres = genreService.createGenres(seancesList);
+        return new Channel(seancesList, genres);
     }
 
     private static Seance createSeance(

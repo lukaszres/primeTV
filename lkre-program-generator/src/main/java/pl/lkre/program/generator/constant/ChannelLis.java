@@ -1,4 +1,4 @@
-package htmlService.htmlService;
+package pl.lkre.program.generator.constant;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

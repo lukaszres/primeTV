@@ -1,17 +1,13 @@
-package htmlService.htmlService;
+package pl.lkre.program.generator.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Value;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Optional;
 
-@Getter
-@Setter
-@AllArgsConstructor
+@Value
 public class Seance {
 
     private String title;

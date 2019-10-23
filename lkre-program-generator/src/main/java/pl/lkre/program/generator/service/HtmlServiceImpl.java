@@ -1,4 +1,9 @@
-package htmlService.htmlService;
+package pl.lkre.program.generator.service;
+
+import pl.lkre.program.generator.HtmlService;
+import pl.lkre.program.generator.constant.ChannelLis;
+import pl.lkre.program.generator.model.Channel;
+import pl.lkre.program.generator.model.Seance;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -10,7 +15,7 @@ import java.util.List;
 
 @ManagedBean
 @ViewScoped
-public class UrlHtmlService implements HtmlService {
+public class HtmlServiceImpl implements HtmlService {
 
     @Override
     public List<Seance> downloadSeances() {
