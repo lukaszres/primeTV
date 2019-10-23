@@ -8,8 +8,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.primefaces.context.RequestContext;
 import pl.lkre.program.generator.HtmlService;
-import pl.lkre.program.generator.model.Seance;
 import pl.lkre.program.generator.service.HtmlServiceImpl;
+import pl.lkre.program.tv.model.Seance;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;

@@ -9,6 +9,7 @@
     <modules>
         <module>lkre-web</module>
         <module>lkre-program-generator</module>
+        <module>lkre-model</module>
     </modules>
 
     <properties>

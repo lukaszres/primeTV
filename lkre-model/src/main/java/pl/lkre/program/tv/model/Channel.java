@@ -1,4 +1,4 @@
-package pl.lkre.program.generator.model;
+package pl.lkre.program.tv.model;
 
 import lombok.Value;
 

@@ -5,8 +5,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
-import pl.lkre.program.generator.model.Channel;
-import pl.lkre.program.generator.model.Seance;
+import pl.lkre.program.tv.model.Channel;
+import pl.lkre.program.tv.model.Seance;
 
 import java.io.IOException;
 import java.net.URL;
