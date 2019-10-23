@@ -1,4 +1,4 @@
-package com.lkre.services.htmlService;
+package htmlService.htmlService;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,12 +8,12 @@ import java.util.List;
 
 @Setter
 @Getter
-public class Channel {
+class Channel {
 
     private List<Seance> seances;
     private List<String> genres;
 
-    public Channel(List<Seance> seances) {
+    Channel(List<Seance> seances) {
         this.seances = seances;
         createGenres();
     }

@@ -1,4 +1,4 @@
-package com.lkre.services.htmlService;
+package htmlService.htmlService;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;

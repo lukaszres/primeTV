@@ -1,4 +1,4 @@
-package com.lkre.services.htmlService;
+package htmlService.htmlService;
 
 public class HtmlServiceFactory {
     public static HtmlService createService() {

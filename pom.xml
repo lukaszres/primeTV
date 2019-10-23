@@ -3,11 +3,12 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>pl.lkre</groupId>
     <artifactId>lkre-programTV</artifactId>
-    <version>2.0.0</version>
+    <version>2.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <modules>
         <module>lkre-web</module>
+        <module>lkre-program-generator</module>
     </modules>
 
     <properties>

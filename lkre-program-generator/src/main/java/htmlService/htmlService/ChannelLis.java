@@ -1,4 +1,4 @@
-package com.lkre.services.htmlService;
+package htmlService.htmlService;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
