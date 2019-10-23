@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum ChannelLis {
+public enum ChannelName {
     e1623("TVP+1"),
     e124("TVP+2"),
     e1234("Polsat"),
