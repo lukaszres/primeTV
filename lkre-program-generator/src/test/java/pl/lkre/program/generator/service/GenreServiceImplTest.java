@@ -2,6 +2,7 @@ package pl.lkre.program.generator.service;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import pl.lkre.program.generator.service.genre.GenreServiceImpl;
 import pl.lkre.program.tv.model.Seance;
 
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class GenreServiceTest {
+class GenreServiceImplTest {
     private static Seance seanceDetective;
     private static Seance seanceComedy;
     private static final String GENRE_DETECTIVE = "kryminał";
@@ -25,12 +26,12 @@ class GenreServiceTest {
     @Test
     void createGenres_when_twoDifferentGenres_then_twoGenres_expected() {
         //given
-        GenreService genreService = new GenreService();
+        GenreServiceImpl genreServiceImpl = new GenreServiceImpl();
         List<Seance> seances = new ArrayList<>();
         seances.add(seanceDetective);
         seances.add(seanceComedy);
         //when
-        List<String> actual = genreService.createGenres(seances);
+        List<String> actual = genreServiceImpl.createGenres(seances);
         //then
         assertThat(actual).containsOnly(GENRE_COMEDY, GENRE_DETECTIVE);
     }
@@ -38,12 +39,12 @@ class GenreServiceTest {
     @Test
     void createGenres_when_twoTheSameGenres_then_oneGenre_expected() {
         //given
-        GenreService genreService = new GenreService();
+        GenreServiceImpl genreServiceImpl = new GenreServiceImpl();
         List<Seance> seances = new ArrayList<>();
         seances.add(seanceDetective);
         seances.add(seanceDetective);
         //when
-        List<String> actual = genreService.createGenres(seances);
+        List<String> actual = genreServiceImpl.createGenres(seances);
         //then
         assertThat(actual).containsOnly(GENRE_DETECTIVE);
     }
@@ -51,13 +52,13 @@ class GenreServiceTest {
     @Test
     void createGenres_when_oneDifferentAndtwoTheSameGenres_then_twoGenres_expected() {
         //given
-        GenreService genreService = new GenreService();
+        GenreServiceImpl genreServiceImpl = new GenreServiceImpl();
         List<Seance> seances = new ArrayList<>();
         seances.add(seanceDetective);
         seances.add(seanceDetective);
         seances.add(seanceComedy);
         //when
-        List<String> actual = genreService.createGenres(seances);
+        List<String> actual = genreServiceImpl.createGenres(seances);
         //then
         assertThat(actual).containsOnly(GENRE_COMEDY, GENRE_DETECTIVE);
     }

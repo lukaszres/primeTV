@@ -1,13 +1,11 @@
-package pl.lkre.program.generator.service;
-
-import pl.lkre.program.generator.constant.ChannelName;
+package pl.lkre.program.generator.service.channellNames;
 
 import java.util.ArrayList;
 import java.util.List;
 
-class ChannelNamesService {
+public class ChannelNamesService {
 
-    List<String> getAllChannelNames() {
+    public List<String> getAllChannelNames() {
         List<String> listOfChannels = new ArrayList<>();
         for (ChannelName channel : ChannelName.values()) {
             listOfChannels.add(channel.getValue());

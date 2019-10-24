@@ -1,5 +1,6 @@
 package pl.lkre.program.generator.service.channel;
 
+import pl.lkre.program.generator.service.downloader.DocumentDownloaderImpl;
 import pl.lkre.program.tv.model.Channel;
 
 import java.io.IOException;
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChannelListService {
-    private ChannelService channelService = new ChannelServiceImpl();
+    private ChannelService channelService = new ChannelServiceImpl(new DocumentDownloaderImpl());
 
     public List<Channel> getChannels(List<String> channelNames) {
         List<Channel> channelList = new ArrayList<>();

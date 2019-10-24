@@ -1,4 +1,4 @@
-package pl.lkre.program.generator.constant;
+package pl.lkre.program.generator.service.channellNames;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

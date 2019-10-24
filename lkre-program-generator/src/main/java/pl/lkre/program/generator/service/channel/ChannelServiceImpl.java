@@ -2,10 +2,10 @@ package pl.lkre.program.generator.service.channel;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import pl.lkre.program.generator.service.GenreService;
 import pl.lkre.program.generator.service.SeanceService;
 import pl.lkre.program.generator.service.downloader.DocumentDownloader;
-import pl.lkre.program.generator.service.downloader.DocumentDownloaderImpl;
+import pl.lkre.program.generator.service.genre.GenreService;
+import pl.lkre.program.generator.service.genre.GenreServiceImpl;
 import pl.lkre.program.tv.model.Channel;
 import pl.lkre.program.tv.model.Seance;
 
@@ -17,10 +17,10 @@ import java.util.Optional;
 public class ChannelServiceImpl implements ChannelService {
     private DocumentDownloader downloader;
     private SeanceService seanceService = new SeanceService();
-    private GenreService genreService = new GenreService();
+    private GenreService genreServiceImpl = new GenreServiceImpl();
 
-    ChannelServiceImpl() {
-        this.downloader = new DocumentDownloaderImpl();
+    ChannelServiceImpl(DocumentDownloader downloader) {
+        this.downloader = downloader;
     }
 
     @Override
@@ -29,7 +29,7 @@ public class ChannelServiceImpl implements ChannelService {
         Optional<Element> dayOptional = Optional.ofNullable(document.getElementsByClass("day_0")
                 .first());
         List<Seance> seancesList = seanceService.getSeances(getChannelName(channel), dayOptional);
-        List<String> genres = genreService.createGenres(seancesList);
+        List<String> genres = genreServiceImpl.createGenres(seancesList);
         return new Channel(seancesList, genres);
     }
 

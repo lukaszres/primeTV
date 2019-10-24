@@ -2,6 +2,7 @@ package pl.lkre.program.generator.service;
 
 import pl.lkre.program.generator.HtmlService;
 import pl.lkre.program.generator.service.channel.ChannelListService;
+import pl.lkre.program.generator.service.channellNames.ChannelNamesService;
 import pl.lkre.program.tv.model.Channel;
 import pl.lkre.program.tv.model.Seance;
 
