@@ -4,13 +4,8 @@ import pl.lkre.program.generator.HtmlService;
 import pl.lkre.program.tv.model.Channel;
 import pl.lkre.program.tv.model.Seance;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import java.util.Comparator;
 import java.util.List;
-
-@ManagedBean
-@ViewScoped
 public class HtmlServiceImpl implements HtmlService {
     private ChannelNamesService channelNamesService = new ChannelNamesService();
     private ChannelService channelService = new ChannelService();
