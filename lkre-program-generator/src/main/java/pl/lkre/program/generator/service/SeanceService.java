@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-class SeanceService {
+public class SeanceService {
     private final static String LACK_OF_TIME = "0000,00,00,00,00";
 
     private SeanceBuilder seanceBuilder = new SeanceBuilder();
@@ -22,7 +22,7 @@ class SeanceService {
         return seances;
     }
 
-    List<Seance> getSeances(String channel, Optional<Element> dayOptional) throws ParseException {
+    public List<Seance> getSeances(String channel, Optional<Element> dayOptional) throws ParseException {
         List<Seance> seancesList = new ArrayList<>();
         if (dayOptional.isPresent() && dayOptional.get()
                 .hasText()) {
