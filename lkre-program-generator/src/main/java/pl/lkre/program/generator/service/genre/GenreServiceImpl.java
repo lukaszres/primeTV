@@ -1,13 +1,13 @@
-package pl.lkre.program.generator.service;
+package pl.lkre.program.generator.service.genre;
 
 import pl.lkre.program.tv.model.Seance;
 
 import java.util.ArrayList;
 import java.util.List;
 
-class GenreService {
+public class GenreServiceImpl implements GenreService {
 
-    List<String> createGenres(List<Seance> seances) {
+    public List<String> createGenres(List<Seance> seances) {
         List<String> genres = new ArrayList<>();
         seances.forEach(seance -> {
                     if (!genres.contains(seance.getGenre()))
