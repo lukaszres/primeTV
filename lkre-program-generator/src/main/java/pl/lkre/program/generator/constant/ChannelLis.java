@@ -68,7 +68,6 @@ public enum ChannelLis {
     e16236("TVN+Fabu%C5%82a"),
     e16237("TVP+Seriale"),
     e16238("Universal+Channel"),
-    e16239("Kino+TV"),
     e16240("Super+Polsat");
 
     private String value;
