@@ -25,7 +25,7 @@
         <loombok.version>1.18.4</loombok.version>
         <jsoup.version>1.11.3</jsoup.version>
         <postgresql.version>42.2.5</postgresql.version>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <assertj-core.version>3.13.2</assertj-core.version>
         <junit-jupiter-engine.version>5.5.2</junit-jupiter-engine.version>
     </properties>
