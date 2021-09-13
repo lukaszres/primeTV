@@ -20,8 +20,7 @@
 ## Follow the Application
 
 If you would like to try PrimeTV follow at once of these links:
-* https://xprogram1.herokuapp.com/
-* https://xprogram2.herokuapp.com/
+* https://prime-tv.herokuapp.com/
 
 ## Used technologies
 
