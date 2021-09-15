@@ -8,11 +8,12 @@ import pl.lkre.program.tv.model.Seance;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class HtmlServiceImpl implements HtmlService {
-    private ChannelNamesService channelNamesService = new ChannelNamesService();
-    private ChannelListService channelListService = new ChannelListService();
-    private SeanceService seanceService = new SeanceService();
+    private final ChannelNamesService channelNamesService = new ChannelNamesService();
+    private final ChannelListService channelListService = new ChannelListService();
+    private final SeanceService seanceService = new SeanceService();
 
 
     @Override
@@ -25,8 +26,10 @@ public class HtmlServiceImpl implements HtmlService {
     private List<Seance> getSeances(List<String> channelNames) {
         List<Channel> channelList = channelListService.getChannels(channelNames);
         List<Seance> allSeances = seanceService.getAllSeances(channelList);
-        allSeances.sort(Comparator.comparing(Seance::getTime));
-        return allSeances;
+        return allSeances.stream()
+                .distinct()
+                .sorted(Comparator.comparing(Seance::getTime))
+                .collect(Collectors.toList());
     }
 
 }

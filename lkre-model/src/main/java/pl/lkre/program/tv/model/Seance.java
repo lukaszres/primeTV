@@ -10,14 +10,26 @@ import java.util.Optional;
 @Value
 public class Seance {
 
-    private String title;
-    private Date time;
-    private String genre;
-    private String episode;
-    private String channel;
+    String title;
+    Date time;
+    String genre;
+    String episode;
+    String channel;
 
     Optional<String> getEpisode() {
         return Optional.ofNullable(episode);
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if(o == this){
+            return true;
+        }
+        if(!(o instanceof Seance)){
+            return false;
+        }
+        Seance s = (Seance) o;
+        return (toString().equals(o.toString()));
     }
 
     @Override
