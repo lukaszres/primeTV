@@ -1,8 +1,5 @@
 package index;
 
-import com.lkre.dao.logger.Activity;
-import com.lkre.dao.logger.Logger;
-import com.lkre.dao.logger.Site;
 import com.lkre.services.cookieService.CookieHandler;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,7 +10,6 @@ import pl.lkre.program.tv.model.Seance;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
 import javax.servlet.http.Cookie;
@@ -37,13 +33,10 @@ public class IndexBacking {
     private List<String> genres = new ArrayList<>();
     private List<String> selectedGenres = new ArrayList<>();
     private HtmlService htmlService = new HtmlServiceImpl();
-    @ManagedProperty(value = "#{logger}")
-    private Logger logger = new Logger();
     private boolean isCookiesAccepted;
 
     @PostConstruct
     public void init() {
-        logger.log(Site.INDEX, Activity.OPEN_SITE, null);
         Cookie acceptedCookie = CookieHandler.getCookie(ACCEPTED_COOKIES);
         isCookiesAccepted = false;
         if (acceptedCookie != null) {
@@ -54,7 +47,6 @@ public class IndexBacking {
     public void downloadSeances(ActionEvent e) {
         String details = e.getComponent()
                 .getId();
-        logger.log(Site.INDEX, Activity.PUSH_BUTTON, details);
         seances = htmlService.downloadSeances();
         createSeancesString();
         createGenres();

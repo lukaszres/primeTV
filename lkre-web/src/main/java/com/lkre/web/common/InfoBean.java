@@ -1,6 +1,5 @@
 package com.lkre.web.common;
 
-import com.lkre.dao.logger.Logger;
 import launch.Main;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,8 +25,6 @@ public class InfoBean {
             " them or that they’ve collected from your use of their services. You consent to our " +
             "cookies if you continue to use our website.";
 
-    @ManagedProperty(value = "#{logger}")
-    private Logger logger;
     private String version;
     private String buildTime;
     private int visitors;
@@ -36,7 +33,6 @@ public class InfoBean {
     public void init() {
         buildTime = loadManifest("Build-Time");
         version = loadManifest("Implementation-Version");
-        visitors = logger.count();
     }
 
     private String loadManifest(String manifestEntry) {
