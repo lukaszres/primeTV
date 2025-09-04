@@ -22,7 +22,7 @@
         <jsf.version>2.2.15</jsf.version>
         <primefaces.version>6.1</primefaces.version>
         <primefaces.themes.version>1.0.10</primefaces.themes.version>
-        <loombok.version>1.18.4</loombok.version>
+        <loombok.version>1.18.30</loombok.version>
         <jsoup.version>1.11.3</jsoup.version>
         <postgresql.version>42.2.5</postgresql.version>
         <junit.version>4.12</junit.version>
@@ -161,8 +161,7 @@
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
-                            <!-- <version>1.18.30</version> -->
-                            <version>1.18.4</version>
+                            <version>${loombok.version}</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
