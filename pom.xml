@@ -158,6 +158,14 @@
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
+                <annotationProcessorPaths>
+                    <path>
+                    <groupId>org.projectlombok</groupId>
+                    <artifactId>lombok</artifactId>
+                    <!-- <version>1.18.30</version> -->
+                    <version>1.18.4</version>
+                    </path>
+                </annotationProcessorPaths>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
