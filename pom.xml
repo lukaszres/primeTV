@@ -12,6 +12,14 @@
         <module>lkre-model</module>
     </modules>
 
+    <configuration>
+    <fork>true</fork>
+    <compilerArgs>
+      <arg>--add-opens</arg>
+      <arg>jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
+    </compilerArgs>
+  </configuration>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>

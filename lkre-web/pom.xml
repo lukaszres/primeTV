@@ -11,6 +11,14 @@
 
     <artifactId>lkre-web</artifactId>
 
+    <configuration>
+    <fork>true</fork>
+    <compilerArgs>
+      <arg>--add-opens</arg>
+      <arg>jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
+    </compilerArgs>
+  </configuration>
+
     <dependencies>
         <dependency>
             <groupId>pl.lkre</groupId>
