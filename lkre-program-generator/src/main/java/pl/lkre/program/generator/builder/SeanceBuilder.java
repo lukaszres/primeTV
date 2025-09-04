@@ -1,54 +1,48 @@
 package pl.lkre.program.generator.builder;
 
+import org.jsoup.helper.StringUtil;
 import org.jsoup.nodes.Element;
-import org.jsoup.nodes.Node;
+import org.jsoup.select.Elements;
 import pl.lkre.program.tv.model.Seance;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import java.util.Optional;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.Objects;
 
 public class SeanceBuilder {
-    private static final Pattern EPISODE_PATTERN = Pattern.compile("( odc. \\d)(.*)");
-    private final static String TIME_PATTERN = "yyyy,MM,dd,HH,mm";
-    private final static String LACK_OF_TITLE = "brak tytułu";
-    private final static String LACK_OF_GENRE = "brak gatunku";
+        private final static String LACK_OF_TITLE = "brak tytułu";
+        private final static String LACK_OF_GENRE = "brak gatunku";
 
-    public Seance createSeance(
-            String channel,
-            String date,
-            Element seance
-    ) throws ParseException {
-        Date dateTime = new SimpleDateFormat(TIME_PATTERN).parse(date);
-        Optional<Element> genreOptional = Optional.ofNullable(seance.getElementsByClass("st")
-                .first());
-        String genreString = genreOptional.isPresent() ? genreOptional.get()
-                .ownText() : LACK_OF_GENRE;
+        public Seance createSeance(
+                        String channel,
+                        String date,
+                        Element seance) throws ParseException {
 
-        Matcher matcher = EPISODE_PATTERN.matcher(genreString);
-        String episode = null;
-        if (matcher.find()) {
-            String episodeString = matcher.group(0);
-            genreString = genreString.replace(episodeString, "");
-            episode = episodeString;
+                LocalDateTime ldt = LocalDateTime.parse(date, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+                Date dateTime = Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant());
+
+                Elements genreElements = seance.getElementsByClass("tvPageGroupedSeances__genre");
+                String genreString = genreElements.size() > 1 ? genreElements.get(1).ownText()
+                                : genreElements.get(0).ownText();
+                if (Objects.isNull(genreString)) {
+                        genreString = LACK_OF_GENRE;
+                }
+
+                StringBuilder episoBuilder = new StringBuilder();
+                Elements episodes = seance.select("strong[data-source-sub-title]");
+                episodes.forEach(s -> episoBuilder.append(" " + s.text()));
+                String episode = episoBuilder.toString();
+
+                String seanceTitle = seance.getElementsByClass("tvPageGroupedSeances__headerTitle").text();
+                if (StringUtil.isBlank(seanceTitle)) {
+                        seanceTitle = seance.getElementsByClass("tvPageGroupedSeances__title").text();
+                        if (StringUtil.isBlank(seanceTitle)) {
+                                seanceTitle = LACK_OF_TITLE;
+                        }
+                }
+                return new Seance(seanceTitle, dateTime, genreString, episode, channel);
         }
-        genreOptional.ifPresent(Node::remove);
-        Optional<Element> titleOptional = Optional.ofNullable(seance.getElementsByClass("sd")
-                .first());
-        String seanceTitle = titleOptional.isPresent() ? titleOptional.get()
-                .ownText() : LACK_OF_TITLE;
-
-        if (titleOptional.isPresent()) {
-            Element hrefTitle = titleOptional.get()
-                    .select("a[href]")
-                    .first();
-            if (hrefTitle != null && hrefTitle.hasText()) {
-                seanceTitle = hrefTitle.html();
-            }
-        }
-        return new Seance(seanceTitle, dateTime, genreString, episode, channel);
-    }
 }

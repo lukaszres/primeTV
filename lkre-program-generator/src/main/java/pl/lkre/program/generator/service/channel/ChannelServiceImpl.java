@@ -26,7 +26,7 @@ public class ChannelServiceImpl implements ChannelService {
     @Override
     public Channel getChannel(String channel) throws IOException, ParseException {
         Document document = downloader.download(channel);
-        Optional<Element> dayOptional = Optional.ofNullable(document.getElementsByClass("day_0")
+        Optional<Element> dayOptional = Optional.ofNullable(document.getElementsByClass("tvPageBroadcastDaySection__seances")
                 .first());
         List<Seance> seancesList = seanceService.getSeances(getChannelName(channel), dayOptional);
         List<String> genres = genreServiceImpl.createGenres(seancesList);

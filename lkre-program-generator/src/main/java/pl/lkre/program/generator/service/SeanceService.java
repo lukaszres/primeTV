@@ -27,11 +27,11 @@ public class SeanceService {
         if (dayOptional.isPresent() && dayOptional.get()
                 .hasText()) {
             Elements seance = dayOptional.get()
-                    .getElementsByClass("seance");
+                    .getElementsByClass("tvPageGroupedSeances");
             Optional<Elements> seancesOptional = Optional.ofNullable(seance);
             if (seancesOptional.isPresent()) {
                 for (Element s : seancesOptional.get()) {
-                    String dateStart = s.hasText() ? s.attr("data-start") : LACK_OF_TIME;
+                    String dateStart = s.hasText() ? s.attr("data-start-time") : LACK_OF_TIME;
                     seancesList.add(seanceBuilder.createSeance(channel, dateStart, s));
                 }
             }
