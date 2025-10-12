@@ -64,10 +64,11 @@ public class IndexBacking {
 
     private void createGenres() {
         seances.forEach(seance -> {
-            String genre = seance.getGenre();
-            if (!genres.contains(genre)) {
+            seance.getGenres().forEach(genre -> {
+                if (!genres.contains(genre)) {
                 genres.add(genre);
             }
+            });
         });
         Collections.sort(genres);
     }
@@ -75,9 +76,11 @@ public class IndexBacking {
     private void createSelectedSeances() {
         selectedSeances.clear();
         seances.forEach(seance -> selectedGenres.forEach(genre -> {
-            if (seance.getGenre()
-                    .equals(genre))
-                selectedSeances.add(seance);
+            seance.getGenres().forEach(genreSeance -> {
+                if (genreSeance.equals(genre)) {
+                    selectedSeances.add(seance);
+                }
+            });
         }));
     }
 

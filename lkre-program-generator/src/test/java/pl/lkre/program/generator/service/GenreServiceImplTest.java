@@ -19,8 +19,8 @@ class GenreServiceImplTest {
 
     @BeforeAll
     static void setUp() {
-        seanceDetective = new Seance("Title1", new Date(), GENRE_DETECTIVE, null, "TV1");
-        seanceComedy = new Seance("Title1", new Date(), GENRE_COMEDY, "3", "TV1");
+        seanceDetective = new Seance("Title1", new Date(), List.of(GENRE_DETECTIVE), null, "TV1");
+        seanceComedy = new Seance("Title1", new Date(), List.of(GENRE_COMEDY), "3", "TV1");
     }
 
     @Test

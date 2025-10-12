@@ -36,6 +36,7 @@ public class ChannelServiceImpl implements ChannelService {
     private String getChannelName(String channel) {
 
         channel = channel.replace("+", " ");
+        channel = channel.replace("-", " ");
         channel = channel.replace("%2B", "+");
         channel = channel.replace("%C5%82", "ł");
         return channel;

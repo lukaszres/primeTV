@@ -10,10 +10,11 @@ public class GenreServiceImpl implements GenreService {
     public List<String> createGenres(List<Seance> seances) {
         List<String> genres = new ArrayList<>();
         seances.forEach(seance -> {
-                    if (!genres.contains(seance.getGenre()))
-                        genres.add(seance.getGenre());
-                }
-        );
+            seance.getGenres().forEach(genre -> {
+                if (!genres.contains(genre))
+                    genres.add(genre);
+            });
+        });
         return genres;
     }
 }

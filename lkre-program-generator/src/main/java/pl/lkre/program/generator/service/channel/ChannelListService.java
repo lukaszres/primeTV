@@ -13,15 +13,21 @@ public class ChannelListService {
 
     public List<Channel> getChannels(List<String> channelNames) {
         List<Channel> channelList = new ArrayList<>();
+        List<String> errors = new ArrayList<>();
         channelNames.forEach(
                 channel -> {
                     try {
                         channelList.add(channelService.getChannel(channel));
                     } catch (IOException | ParseException e) {
-                        e.printStackTrace();
+                        errors.add(channel + " : " + e.getMessage());
                     }
                 }
         );
+        System.out.println("==============================================");
+        System.out.println(errors.size() + " błędów");
+        System.out.println("==============================================");
+        errors.forEach(error -> System.out.println(error));
+        System.out.println("==============================================");
         return channelList;
     }
 

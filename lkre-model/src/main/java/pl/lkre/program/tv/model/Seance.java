@@ -4,7 +4,9 @@ import lombok.Value;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Value
@@ -12,7 +14,7 @@ public class Seance {
 
     String title;
     Date time;
-    String genre;
+    List<String> genres;
     String episode;
     String channel;
 
@@ -36,7 +38,7 @@ public class Seance {
     public String toString() {
         DateFormat df = new SimpleDateFormat("HH:mm");
         String episodeString = episode == null ? "" : " :: " + episode;
-        return df.format(time) + " :: " + channel + " :: " + genre + " :: " + title + episodeString;
+        return df.format(time) + " :: " + channel + " :: " + genres + " :: " + title + episodeString;
     }
 }
 

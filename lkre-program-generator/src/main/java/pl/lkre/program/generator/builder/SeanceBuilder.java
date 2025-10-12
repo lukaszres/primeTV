@@ -9,12 +9,15 @@ import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 public class SeanceBuilder {
         private final static String LACK_OF_TITLE = "brak tytułu";
         private final static String LACK_OF_GENRE = "brak gatunku";
+        private List<String> unwantedGenres = List.of("serial", "film");
 
         public Seance createSeance(
                         String channel,
@@ -25,11 +28,17 @@ public class SeanceBuilder {
                 Date dateTime = Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant());
 
                 Elements genreElements = seance.getElementsByClass("tvPageGroupedSeances__genre");
-                String genreString = genreElements.size() > 1 ? genreElements.get(1).ownText()
-                                : genreElements.get(0).ownText();
-                if (Objects.isNull(genreString)) {
-                        genreString = LACK_OF_GENRE;
-                }
+                List<String> genres = new ArrayList<>();
+                genreElements.forEach(genre -> {
+                        String genreString = genre.ownText();
+                        if (Objects.isNull(genreString)) {
+                                genreString = LACK_OF_GENRE;
+                        }
+                        genres.add(genreString);
+                });
+
+                genres.removeIf(g -> unwantedGenres.stream()
+                                   .anyMatch(u -> u.equalsIgnoreCase(g)));
 
                 StringBuilder episoBuilder = new StringBuilder();
                 Elements episodes = seance.select("strong[data-source-sub-title]");
@@ -43,6 +52,6 @@ public class SeanceBuilder {
                                 seanceTitle = LACK_OF_TITLE;
                         }
                 }
-                return new Seance(seanceTitle, dateTime, genreString, episode, channel);
+                return new Seance(seanceTitle, dateTime, genres, episode, channel);
         }
 }
