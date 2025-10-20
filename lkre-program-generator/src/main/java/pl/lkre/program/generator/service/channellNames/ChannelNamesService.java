@@ -58,6 +58,8 @@ public class ChannelNamesService {
         channels.add("TVN+Fabu%C5%82a");
         channels.add("TVP+Seriale");
         channels.add("Super+Polsat");
+        channels.add("warner-tv");
+        channels.add("sci-fi");
         return channels;
     }
 }
